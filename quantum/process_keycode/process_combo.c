@@ -37,6 +37,10 @@ __attribute__((weak)) bool get_combo_must_hold(uint16_t index, combo_t *combo) {
 __attribute__((weak)) uint16_t get_combo_term(uint16_t index, combo_t *combo) { return COMBO_TERM; }
 #endif
 
+#ifdef COMBO_PROCESS_KEY_RELEASE
+__attribute__((weak)) bool process_combo_key_release(uint16_t combo_index, combo_t *combo, uint8_t key_index, uint16_t keycode) { return false; }
+#endif
+
 #ifndef COMBO_NO_TIMER
 static uint16_t timer                 = 0;
 #endif
@@ -371,12 +375,20 @@ static bool process_single_combo(combo_t *combo, uint16_t keycode, keyrecord_t *
             release_combo(combo_index, combo);
             key_is_part_of_combo = true;
 
+#ifdef COMBO_PROCESS_KEY_RELEASE
+            process_combo_key_release(combo_index, combo, key_index, keycode);
+#endif
         } else if (combo->active
                 && KEY_NOT_YET_RELEASED(combo->state, key_index)
                 ) {
             /* first or middle key released */
             key_is_part_of_combo = true;
 
+#ifdef COMBO_PROCESS_KEY_RELEASE
+            if (process_combo_key_release(combo_index, combo, key_index, keycode)) {
+                release_combo(combo_index, combo);
+            }
+#endif
         } else {
             /* The released key was part of an incomplete combo */
             key_is_part_of_combo = false;

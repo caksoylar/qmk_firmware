@@ -209,6 +209,43 @@ chance that the latter ones might not activate properly.
 By defining `COMBO_NO_TIMER`, the timer is disabled completely and combos are activated on the first key release.
 This also disables the "must hold" functionalities as they just wouldn't work at all.
 
+## Customizable key releases
+
+By defining `COMBO_PROCESS_KEY_RELEASE` and implementing the function `bool process_combo_key_release(uint16_t combo_index, combo_t *combo, uint8_t key_index, uint16_t keycode)`, you can run your custom code on each key release after a combo was activated. For example you could change the RGB colors, run activate haptics, or alter the modifiers.
+
+You can also release a combo early by returning `true` from the function.
+
+Here's an example where a combo resolves to two modifiers, and on key releases the modifiers are unregistered one by one, depending on which key was released.
+
+```c
+enum combos {
+  AB_MODS,
+  COMBO_LENGTH
+};
+uint16_t COMBO_LEN = COMBO_LENGTH;
+
+const uint16_t PROGMEM ab_combo[] = {KC_A, KC_B, COMBO_END};
+
+combo_t key_combos[] = {
+  [AB_MODS] = COMBO(ab_combo, LCTL(KC_LSFT)),
+};
+
+bool process_combo_key_release(uint16_t combo_index, combo_t *combo, uint8_t key_index, uint16_t keycode) {
+    switch (combo_index) {
+        case AB_MODS:
+            switch(keycode) {
+                case KC_A:
+                    unregister_mods(MOD_MASK_CTRL);
+                    break;
+                case KC_B:
+                    unregister_mods(MOD_MASK_SHIFT);
+                    break;
+            }
+            return false; // do not release combo
+    }
+    return false;
+}
+```
 ## User callbacks
 
 In addition to the keycodes, there are a few functions that you can use to set the status, or check it:
