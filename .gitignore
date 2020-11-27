@@ -67,6 +67,8 @@ CMakeLists.txt
 .vscode/tasks.json
 .vscode/temp.sql
 tags
+.clangd
+compile_commands.json
 
 # Ignore image files
 *.gif
