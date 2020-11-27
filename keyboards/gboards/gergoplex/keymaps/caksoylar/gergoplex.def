@@ -1,0 +1,16 @@
+COMB(lscBacksl,  KC_BSLS,  KC_L, KC_SCLN)
+COMB(uiEsc,      KC_ESC,   KC_U, KC_I)
+COMB(ikBsp,      KC_BSPC,  KC_I, KC_K)
+COMB(asTab,      KC_TAB,   KC_A, KC_S)
+
+COMB(dfLpar,     KC_LPRN,  KC_D, KC_F)
+COMB(jkRpar,     KC_RPRN,  KC_J, KC_K)
+COMB(sdLbrc,     KC_LBRC,  KC_S, KC_D)
+COMB(klRbrc,     KC_RBRC,  KC_K, KC_L)
+
+COMB(xcDash,     KC_MINS,  KC_X, KC_C)
+COMB(cdUnds,     KC_UNDS,  KC_COMM, KC_DOT)
+COMB(cvEql,      KC_EQL,   KC_C, KC_V)
+
+COMB(mcQuot,     KC_QUOT,  KC_M, KC_COMM)
+COMB(qwGrv,      KC_GRV,   KC_Q, KC_W)
