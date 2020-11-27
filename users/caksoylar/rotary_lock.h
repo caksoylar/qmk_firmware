@@ -1,7 +1,7 @@
 #pragma once
 #include QMK_KEYBOARD_H
 
-#if (__has_include("secrets.h") && defined(USE_SECRETS))
+#if (__has_include("secrets.h"))
     #include "secrets.h"
 #else
     #define COMBINATION { 200 }
