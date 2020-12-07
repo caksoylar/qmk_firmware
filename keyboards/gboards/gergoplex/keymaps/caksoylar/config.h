@@ -5,7 +5,7 @@
 #define IGNORE_MOD_TAP_INTERRUPT
 
 #undef TAPPING_TERM
-#define TAPPING_TERM 170
+#define TAPPING_TERM 150
 
 #undef DEBOUNCE
 #define DEBOUNCE 20
@@ -14,3 +14,6 @@
 
 #undef COMBO_TERM
 #define COMBO_TERM 50
+
+#define TAPPING_FORCE_HOLD_PER_KEY
+#define RETRO_TAPPING_PER_KEY
