@@ -12,7 +12,7 @@ enum my_keycodes {
     TG_CLMK = SAFE_RANGE,
 };
 
-// shortcut definitions
+// macros to prettify keymap
 #define CTL_ESC CTL_T(KC_ESC)
 #define ALT_BSP RALT_T(KC_BSPC)
 #define GUI_TAB GUI_T(KC_TAB)
@@ -39,6 +39,15 @@ enum my_keycodes {
      *          |     |     |     |            |     |     |     |
      *          '-----------------'            '-----------------'
      */
+
+typedef union {
+    uint32_t raw;
+    struct {
+        bool alternate_base :1;
+    };
+} user_config_t;
+
+user_config_t user_config;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_split_3x5_3(
@@ -68,12 +77,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    static bool alternate_base = false;
     static const uint8_t colemak_dh[] = {KC_A, KC_V, KC_C, KC_S, KC_F, KC_T, KC_G,
                                          KC_M, KC_U, KC_N, KC_E, KC_I, KC_H, KC_K,
                                          KC_Y, KC_SCLN, KC_Q, KC_P, KC_R, KC_B, KC_L,
                                          KC_D, KC_W, KC_X, KC_J, KC_Z};
-    if (alternate_base) {
+    if (user_config.alternate_base) {
         switch (keycode) {
             case KC_A ... KC_Z:
                 record->event.pressed ? register_code(colemak_dh[keycode - KC_A]) : unregister_code(colemak_dh[keycode - KC_A]);
@@ -82,13 +90,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 record->event.pressed ? register_code(KC_O) : unregister_code(KC_O);
                 return false;
             case TG_CLMK:
-                if (record->event.pressed) alternate_base = false;
+                if (record->event.pressed) {
+                    user_config.alternate_base = false;
+                    eeconfig_update_user(user_config.raw);
+                }
                 return false;
         }
         return true;
     }
     if (keycode == TG_CLMK) {
-        if (record->event.pressed) alternate_base = true;
+        if (record->event.pressed) {
+            user_config.alternate_base = true;
+            eeconfig_update_user(user_config.raw);
+        }
         return false;
     }
     return true;
@@ -125,4 +139,14 @@ bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
         default:
             return false;
     }
+}
+
+void keyboard_post_init_user(void) {
+    user_config.raw = eeconfig_read_user();
+}
+
+void eeconfig_init_user(void) {
+    user_config.raw = 0;
+    user_config.alternate_base = false;
+    eeconfig_update_user(user_config.raw);
 }
