@@ -133,7 +133,6 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 
 bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case SFT_Z:
         case EXT_SPC:
             return true;
         default:
