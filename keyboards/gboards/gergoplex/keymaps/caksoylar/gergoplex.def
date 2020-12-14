@@ -1,6 +1,6 @@
 COMB(lscBacksl,  KC_BSLS,  KC_L, KC_SCLN)
-COMB(ikBsp,      KC_BSPC,  KC_I, KC_K)
-COMB(asTab,      KC_TAB,   KC_A, KC_S)
+COMB(jlBsp,      KC_BSPC,  KC_J, KC_L)
+COMB(sfTab,      KC_TAB,   KC_S, KC_F)
 
 COMB(dfLpar,     KC_LPRN,  KC_D, KC_F)
 COMB(jkRpar,     KC_RPRN,  KC_J, KC_K)
