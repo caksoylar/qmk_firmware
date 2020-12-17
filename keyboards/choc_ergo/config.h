@@ -45,7 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     { B5, B4, E6, D7, C6 }, \
     { B1, F7, F6, F5, F4 }, \
     { NO_PIN, NO_PIN, NO_PIN, B3, B2 } \
-} \
+}
 #define UNUSED_PINS
 
 /* COL2ROW, ROW2COL */
