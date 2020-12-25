@@ -3,7 +3,7 @@
 // #include "combos/germ-mouse-keys.def"
 
 // User includes
-#include "gergoplex.def"
+#include "alphas_q.def"
 #include "secrets.def"
 
 // Word completion
