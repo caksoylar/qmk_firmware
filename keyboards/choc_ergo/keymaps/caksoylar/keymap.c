@@ -1,5 +1,4 @@
 #include "choc_ergo.h"
-// #include QMK_KEYBOARD_H
 
 #define OS_CTRL OSM(MOD_LCTL)
 #define OS_SHFT OSM(MOD_LSFT)
@@ -54,29 +53,35 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 };
 
-void update_swapper(bool *active, uint16_t cmdish, uint16_t tabish, uint16_t trigger, uint16_t keycode, keyrecord_t *record) {
-    if (keycode == trigger) {
+bool sw_win_active = false;
+
+void update_swapper(bool *active,
+                    uint16_t cmdish,
+                    uint16_t tabish1,
+                    uint16_t tabish2,
+                    uint16_t trigger1,
+                    uint16_t trigger2,
+                    uint16_t keycode,
+                    keyrecord_t *record) {
+    if (keycode == trigger1 || keycode == trigger2) {
         if (record->event.pressed) {
             if (!*active) {
                 *active = true;
-                register_code(cmdish);
+                register_code16(cmdish);
             }
-            register_code(tabish);
+            register_code16(keycode == trigger1 ? tabish1 : tabish2);
         } else {
-            unregister_code(tabish);
+            unregister_code16(keycode == trigger1 ? tabish1 : tabish2);
             // Don't unregister cmdish until some other key is hit or released.
         }
     } else if (*active) {
-        unregister_code(cmdish);
+        unregister_code16(cmdish);
         *active = false;
     }
 }
 
-bool sw_win_active = false;
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    update_swapper(&sw_win_active, KC_LALT, KC_TAB, SW_WIN, keycode, record);
-    update_swapper(&sw_win_active, LSFT(KC_LALT), KC_TAB, SW_WINP, keycode, record);
+    update_swapper(&sw_active, KC_LALT, KC_TAB, LSFT(KC_TAB), SW_WIN, SW_WINP, keycode, record);
 
     return true;
 }
