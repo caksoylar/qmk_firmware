@@ -19,7 +19,6 @@ enum my_keycodes {
 #define CTL_ESC CTL_T(KC_ESC)
 #define SYM_BSP LT(SYM, KC_BSPC)
 #define NAV_SPC LT(NAV, KC_SPC)
-// #define EXT_BSP LT(_EXTR, KC_BSPC)
 
 #define SFT_ENT SFT_T(KC_ENT)
 #define SFT_Z   SFT_T(KC_Z)
@@ -28,6 +27,9 @@ enum my_keycodes {
 #define CTL_SLS CTL_T(KC_SLSH)
 #define GUI_DOT GUI_T(KC_DOT)
 #define ALT_COM LALT_T(KC_COMM)
+#define CTL_PEN CTL_T(KC_PENT)
+#define GUI_P3  GUI_T(KC_P3)
+#define ALT_P2  LALT_T(KC_P2)
 
 #define ALT_F4  LALT(KC_F4)
 #define CTL_F4  LCTL(KC_F4)
@@ -88,9 +90,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  KC_LGUI, KC_LCTL, _______,                        _______, KC_LSFT, KC_RALT
     ),
     [FUN] = LAYOUT_split_3x5_3(
-        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,        KC_CAPS, KC_P7,   KC_P8,   KC_P9, KC_PMNS,
-        KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,       KC_NLCK, KC_P4,   KC_P5,   KC_P6, KC_PPLS,
-        KC_LSFT, KC_LGUI, KC_LALT, KC_F11,  KC_F12,       KC_P0,   KC_P1,   KC_P2,   KC_P3, KC_PENT,
+        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,        KC_CAPS, KC_P7,   KC_P8,   KC_P9,   KC_PMNS,
+        KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,       KC_NLCK, KC_P4,   KC_P5,   KC_P6,   KC_PPLS,
+        KC_LSFT, KC_LGUI, KC_LALT, KC_F11,  KC_F12,       KC_P0,   KC_P1,   ALT_P2,  GUI_P3,  CTL_PEN,
                  KC_LGUI, TG_GAME, _______,                        _______, TG_CLMK, KC_RALT
     )
 };
