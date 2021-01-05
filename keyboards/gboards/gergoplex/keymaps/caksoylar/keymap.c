@@ -83,13 +83,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [SYM] = LAYOUT_split_3x5_3(
         KC_1,    KC_2,    KC_3,    KC_4,    KC_5,         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
         KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,      KC_CIRC, KC_MINS, KC_UNDS, KC_EQL,  KC_PLUS,
-        KC_LSFT, KC_LGUI, KC_RALT, KC_SCLN, KC_AMPR,      KC_ASTR, KC_BSLS, KC_LALT, KC_LGUI, KC_LCTL,
+        KC_LSFT, KC_LGUI, KC_RALT, KC_SCLN, KC_AMPR,      KC_ASTR, KC_BSLS, KC_LALT, KC_LGUI, KC_LSFT,
                  KC_LGUI, KC_LCTL, _______,                        _______, KC_LSFT, KC_RALT
     ),
     [NAV] = LAYOUT_split_3x5_3(
         ALT_F4,  CTL_F4,  KC_MPRV, KC_MNXT, KC_VOLU,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_CALC,
         DSK_LT,  WIN_LT,  WIN_RT,  DSK_RT,  KC_VOLD,      KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_PAUS,
-        KC_LSFT, KC_LGUI, KC_LALT, SFT_INS, KC_MPLY,      KC_INS,  KC_DEL,  XXXXXXX, XXXXXXX, XXXXXXX,
+        KC_LCTL, KC_LGUI, KC_LALT, SFT_INS, KC_MPLY,      KC_INS,  KC_DEL,  XXXXXXX, XXXXXXX, XXXXXXX,
                  KC_LGUI, KC_LCTL, _______,                        _______, KC_LSFT, KC_RALT
     ),
     [FUN] = LAYOUT_split_3x5_3(
