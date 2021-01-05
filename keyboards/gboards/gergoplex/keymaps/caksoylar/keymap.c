@@ -15,12 +15,13 @@ enum my_keycodes {
     WIN_LT
 };
 
-// macros to prettify keymap
+// thumb keys
 #define CTL_ESC CTL_T(KC_ESC)
 #define NAV_BSP LT(NAV, KC_BSPC)
 #define SYM_SPC LT(SYM, KC_SPC)
-
 #define SFT_ENT SFT_T(KC_ENT)
+
+// bottom row mod-taps
 #define SFT_Z   SFT_T(KC_Z)
 #define GUI_X   GUI_T(KC_X)
 #define ALT_C   RALT_T(KC_C)
@@ -31,12 +32,14 @@ enum my_keycodes {
 #define GUI_P3  GUI_T(KC_P3)
 #define ALT_P2  LALT_T(KC_P2)
 
+// navigation shortcuts
 #define ALT_F4  LALT(KC_F4)
 #define CTL_F4  LCTL(KC_F4)
 #define DSK_LT  LCTL(LGUI(KC_LEFT))
 #define DSK_RT  LCTL(LGUI(KC_RGHT))
 #define SFT_INS LSFT(KC_INS)
 
+// extra keys
 #define TG_GAME TG(GME)
 #define GUI_TAB GUI_T(KC_TAB)
 #define ALT_DEL RALT_T(KC_DEL)
@@ -170,22 +173,18 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, SYM, NAV, FUN);
 }
 
-bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
-    return true;
-    /*switch (keycode) {
-        case SFT_ENT:
-        case SYM_SPC:
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case GUI_TAB:
+        case CTL_ESC:
         case NAV_BSP:
-        case SFT_Z:
-        case CTL_SLS:
-        case GUI_X:
-        case GUI_DOT:
-        case ALT_C:
-        case ALT_COM:
+        case SYM_SPC:
+        case SFT_ENT:
+        case ALT_DEL:
             return true;
         default:
             return false;
-    }*/
+    }
 }
 
 bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
