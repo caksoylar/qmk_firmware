@@ -12,7 +12,7 @@ enum layers {
 enum my_keycodes {
     TG_CLMK = SAFE_RANGE,
     WIN_RT,
-    WIN_LT
+    WIN_LT,
 };
 
 // thumb keys
@@ -33,11 +33,13 @@ enum my_keycodes {
 #define ALT_P2  LALT_T(KC_P2)
 
 // navigation shortcuts
-#define ALT_F4  LALT(KC_F4)
-#define CTL_F4  LCTL(KC_F4)
-#define DSK_LT  LCTL(LGUI(KC_LEFT))
-#define DSK_RT  LCTL(LGUI(KC_RGHT))
-#define SFT_INS LSFT(KC_INS)
+#define ALT_F4  A(KC_F4)
+#define CTL_F4  C(KC_F4)
+#define DSK_LT  C(G(KC_LEFT))
+#define DSK_RT  C(G(KC_RGHT))
+#define SFT_INS S(KC_INS)
+#define TAB_RT  C(KC_TAB)
+#define TAB_LT  C(S(KC_TAB))
 
 // extra keys
 #define TG_GAME TG(GME)
@@ -87,9 +89,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  KC_LGUI, KC_LCTL, _______,                        _______, KC_LSFT, KC_RALT
     ),
     [NAV] = LAYOUT_split_3x5_3(
-        ALT_F4,  CTL_F4,  KC_MPRV, KC_MNXT, KC_VOLU,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_CALC,
+        ALT_F4,  TAB_LT,  TAB_RT,  CTL_F4,  KC_VOLU,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_CALC,
         DSK_LT,  WIN_LT,  WIN_RT,  DSK_RT,  KC_VOLD,      KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_PAUS,
-        KC_LCTL, KC_LGUI, KC_LALT, SFT_INS, KC_MPLY,      KC_INS,  KC_DEL,  XXXXXXX, XXXXXXX, XXXXXXX,
+        KC_LCTL, KC_LGUI, KC_LALT, SFT_INS, XXXXXXX,      KC_INS,  KC_DEL,  KC_MPLY, KC_MPRV, KC_MNXT,
                  KC_LGUI, KC_LCTL, _______,                        _______, KC_LSFT, KC_RALT
     ),
     [FUN] = LAYOUT_split_3x5_3(
@@ -130,9 +132,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                                          KC_M, KC_U, KC_N, KC_E, KC_I, KC_H, KC_K,
                                          KC_Y, KC_QUOT, KC_Q, KC_P, KC_R, KC_B, KC_L,
                                          KC_D, KC_W, KC_X, KC_J, KC_Z};
-    static bool sw_active = false;
+    static bool win_active = false;
 
-    update_swapper(&sw_active, KC_LALT, WIN_RT, KC_TAB, WIN_LT, LSFT(KC_TAB), keycode, record->event.pressed);
+    update_swapper(&win_active, KC_LALT, WIN_RT, KC_TAB, WIN_LT, S(KC_TAB), keycode, record->event.pressed);
 
     if (user_config.alternate_base) {
         switch (keycode) {
