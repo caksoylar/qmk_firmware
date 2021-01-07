@@ -99,7 +99,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             combo_disable();
             break;
     }
-    return update_tri_layer_state(state, SYM, NAV, FUN);
+    state = update_tri_layer_state(state, SYM, NAV, FUN);
+    return layer_state_set_keymap(state);
 }
 
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
