@@ -1,19 +1,6 @@
-#define COMBO_ALLOW_ACTION_KEYS
-#define COMBO_VARIABLE_LEN
-
-#define PERMISSIVE_HOLD_PER_KEY
-#define IGNORE_MOD_TAP_INTERRUPT
-
-#undef TAPPING_TERM
-#define TAPPING_TERM 150
+#include "caksoylar_config.h"
 
 #undef DEBOUNCE
 #define DEBOUNCE 20
 
 #define QMK_KEYS_PER_SCAN 4
-
-#undef COMBO_TERM
-#define COMBO_TERM 60
-
-#define TAPPING_FORCE_HOLD
-#define RETRO_TAPPING_PER_KEY
