@@ -110,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
        KC_CAPS, DF(_BASE),DF(_GAME),DF(_COLE),_______,_______,                          _______, _______, KC_NLCK, KC_PSLS, KC_PAST, KC_PMNS,
     //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-       RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, RESET,   _______,                            _______, _______, KC_KP_7, KC_KP_8, KC_KP_9, _______,
+       RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, RESET,   EEP_RST,                            _______, _______, KC_KP_7, KC_KP_8, KC_KP_9, _______,
     //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
        RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, _______, _______,                            _______, _______, KC_KP_4, KC_KP_5, KC_KP_6, KC_PPLS,
     //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -136,7 +136,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 #ifdef RGBLIGHT_ENABLE
 void keyboard_post_init_user(void) {
+    rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
     rgblight_sethsv_noeeprom(150, 137, 255);
+    if (is_keyboard_left() == is_keyboard_master()) {
+        default_layer_set(1UL << _GAME);
+    }
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
