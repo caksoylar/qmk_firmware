@@ -7,5 +7,3 @@ ifeq ($(strip $(USE_SECRETS)), yes)
 else
     OPT_DEFS += -DNO_SECRETS
 endif
-
-SRC += caksoylar.c
