@@ -185,11 +185,17 @@ If you're having issues with serial communication, you can change this value, as
 #define SPLIT_MODS_ENABLE
 ```
 
-This enables transmitting modifier state (normal, weak and oneshot) to the non
-primary side of the split keyboard.  This adds a few bytes of data to the split
+This enables transmitting modifier state (normal, weak and oneshot) to the
+non-primary side of the split keyboard.  This adds a few bytes of data to the split
 communication protocol and may impact the matrix scan speed when enabled.
-The purpose of this feature is to support cosmetic use of modifer state (e.g.
+The purpose of this feature is to support cosmetic use of modifier state (e.g.
 displaying status on an OLED screen).
+
+```c
+#define SPLIT_LAYERS_ENABLE
+```
+
+This enables transmitting layer state to the non-primary side of the split keyboard.  Similar to `SPLIT_MODS_ENABLE`, it is to support cosmetic use of the layer state and may impact matrix scan speed.
 
 ###  Hardware Configuration Options
 

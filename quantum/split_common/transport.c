@@ -60,6 +60,7 @@ static I2C_slave_buffer_t *const i2c_buffer = (I2C_slave_buffer_t *)i2c_slave_re
 #    define I2C_REAL_MODS_START offsetof(I2C_slave_buffer_t, real_mods)
 #    define I2C_WEAK_MODS_START offsetof(I2C_slave_buffer_t, weak_mods)
 #    define I2C_ONESHOT_MODS_START offsetof(I2C_slave_buffer_t, oneshot_mods)
+#    define I2C_LAYER_STATE_START offsetof(I2C_slave_buffer_t, layer_state)
 #    define I2C_BACKLIGHT_START offsetof(I2C_slave_buffer_t, backlight_level)
 #    define I2C_RGB_START offsetof(I2C_slave_buffer_t, rgblight_sync)
 #    define I2C_ENCODER_START offsetof(I2C_slave_buffer_t, encoder_state)
@@ -134,6 +135,15 @@ bool transport_master(matrix_row_t matrix[]) {
 #        endif
 #    endif
 
+#    ifdef SPLIT_LAYERS_ENABLE
+    uint8_t current_layer = layer_state;
+    if (current_layer != i2c_buffer->current_layer) {
+        if (i2c_writeReg(SLAVE_I2C_ADDRESS, I2C_LAYER_START, (void *)&current_layer, sizeof(current_layer), TIMEOUT) >= 0) {
+            i2c_buffer->current_layer = current_layer;
+        }
+    }
+#    endif
+
 #    ifndef DISABLE_SYNC_TIMER
     i2c_buffer->sync_timer = sync_timer_read32() + SYNC_TIMER_OFFSET;
     i2c_writeReg(SLAVE_I2C_ADDRESS, I2C_SYNC_TIME_START, (void *)&i2c_buffer->sync_timer, sizeof(i2c_buffer->sync_timer), TIMEOUT);
@@ -176,6 +186,12 @@ void transport_slave(matrix_row_t matrix[]) {
     set_oneshot_mods(i2c_buffer->oneshot_mods);
 #       endif
 #    endif
+
+#    ifdef SPLIT_LAYERS_ENABLE
+    if (layer_state != i2c_buffer->layer_state) {
+        layer_state_set(i2c_buffer->layer_state);
+    }
+#    endif
 }
 
 void transport_master_init(void) { i2c_init(); }
@@ -203,6 +219,9 @@ typedef struct _Serial_m2s_buffer_t {
 #        ifndef NO_ACTION_ONESHOT
     uint8_t oneshot_mods;
 #        endif
+#    endif
+#    ifdef SPLIT_LAYERS_ENABLE
+    uint8_t layer_state;
 #    endif
 #    ifndef DISABLE_SYNC_TIMER
     uint32_t sync_timer;
@@ -327,6 +346,11 @@ bool transport_master(matrix_row_t matrix[]) {
     serial_m2s_buffer.oneshot_mods = get_oneshot_mods();
 #        endif
 #    endif
+
+#    ifdef SPLIT_LAYERS_ENABLE
+    serial_m2s_buffer.layer_state = layer_state;
+#    endif
+
 #    ifndef DISABLE_SYNC_TIMER
     serial_m2s_buffer.sync_timer = sync_timer_read32() + SYNC_TIMER_OFFSET;
 #    endif
@@ -361,6 +385,12 @@ void transport_slave(matrix_row_t matrix[]) {
 #        ifndef NO_ACTION_ONESHOT
     set_oneshot_mods(serial_m2s_buffer.oneshot_mods);
 #        endif
+#    endif
+
+#    ifdef SPLIT_LAYERS_ENABLE
+    if (layer_state != serial_m2s_buffer->layer_state) {
+        layer_state_set(serial_m2s_buffer->layer_state);
+    }
 #    endif
 }
 
