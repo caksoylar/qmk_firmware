@@ -91,13 +91,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 __attribute__((weak)) layer_state_t layer_state_set_keymap(layer_state_t state) { return state; }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    switch (get_highest_layer(state)) {
-        case DEF:
-            combo_enable();
-            break;
-        default:
-            combo_disable();
-            break;
+    if (is_keyboard_master()) {
+        switch (get_highest_layer(state)) {
+            case DEF:
+                combo_enable();
+                break;
+            default:
+                combo_disable();
+                break;
+        }
     }
     state = update_tri_layer_state(state, SYM, NAV, FUN);
     return layer_state_set_keymap(state);
