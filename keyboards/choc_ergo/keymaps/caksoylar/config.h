@@ -1,4 +1,4 @@
 #define MASTER_RIGHT
-// #define USE_I2C
+#define QMK_KEYS_PER_SCAN 4
 
 #include "caksoylar_config.h"
