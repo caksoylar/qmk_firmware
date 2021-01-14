@@ -37,6 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
+#ifdef LAYER_LEDS
 #define PRO_MICRO_LED_TX D5  // right pin
 #define PRO_MICRO_LED_RX B0  // left pin
 
@@ -69,3 +70,4 @@ layer_state_t layer_state_set_keymap(layer_state_t state) {
     }
     return state;
 }
+#endif
