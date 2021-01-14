@@ -105,6 +105,23 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return layer_state_set_keymap(state);
 }
 
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case SFT_Z:
+        case GUI_X:
+        case ALT_C:
+        case CTL_SLS:
+        case GUI_DOT:
+        case ALT_COM:
+        case CTL_PEN:
+        case GUI_P3:
+        case ALT_P2:
+            return TAPPING_TERM + 50;
+        default:
+            return TAPPING_TERM;
+    }
+}
+
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case GUI_TAB:
