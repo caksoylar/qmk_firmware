@@ -1,13 +1,6 @@
 #include "caksoylar.h"
 
-void update_swapper(bool *active,
-                    uint16_t hold_key,
-                    uint16_t trigger1,
-                    uint16_t tap_key1,
-                    uint16_t trigger2,
-                    uint16_t tap_key2,
-                    uint16_t keycode,
-                    bool pressed) {
+void update_swapper(bool *active, uint16_t hold_key, uint16_t trigger1, uint16_t tap_key1, uint16_t trigger2, uint16_t tap_key2, uint16_t keycode, bool pressed) {
     if (keycode == trigger1 || keycode == trigger2) {
         if (pressed) {
             if (!*active) {
@@ -29,10 +22,9 @@ __attribute__((weak)) void matrix_init_keymap(void) {}
 
 void matrix_init_user(void) { matrix_init_keymap(); }
 
-__attribute__((weak))
-void keyboard_post_init_keymap(void){ }
+__attribute__((weak)) void keyboard_post_init_keymap(void) {}
 
-void keyboard_post_init_user(void){
+void keyboard_post_init_user(void) {
     userspace_config.raw = eeconfig_read_user();
     keyboard_post_init_keymap();
 }
@@ -41,11 +33,10 @@ __attribute__((weak)) void matrix_scan_keymap(void) {}
 
 void matrix_scan_user(void) { matrix_scan_keymap(); }
 
-__attribute__ ((weak))
-void eeconfig_init_keymap(void) {}
+__attribute__((weak)) void eeconfig_init_keymap(void) {}
 
 void eeconfig_init_user(void) {
-    userspace_config.raw = 0;
+    userspace_config.raw            = 0;
     userspace_config.alternate_base = false;
     eeconfig_init_keymap();
 }
@@ -53,11 +44,8 @@ void eeconfig_init_user(void) {
 __attribute__((weak)) bool process_record_keymap(uint16_t keycode, keyrecord_t *record) { return true; }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    static const uint8_t colemak_dh[] = {KC_A, KC_V, KC_C, KC_S, KC_F, KC_T, KC_G,
-                                         KC_M, KC_U, KC_N, KC_E, KC_I, KC_H, KC_K,
-                                         KC_Y, KC_QUOT, KC_Q, KC_P, KC_R, KC_B, KC_L,
-                                         KC_D, KC_W, KC_X, KC_J, KC_Z};
-    static bool win_active = false;
+    static const uint8_t colemak_dh[] = {KC_A, KC_V, KC_C, KC_S, KC_F, KC_T, KC_G, KC_M, KC_U, KC_N, KC_E, KC_I, KC_H, KC_K, KC_Y, KC_QUOT, KC_Q, KC_P, KC_R, KC_B, KC_L, KC_D, KC_W, KC_X, KC_J, KC_Z};
+    static bool          win_active   = false;
 
     update_swapper(&win_active, KC_LALT, WIN_RT, KC_TAB, WIN_LT, S(KC_TAB), keycode, record->event.pressed);
 
