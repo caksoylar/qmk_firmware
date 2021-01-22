@@ -48,11 +48,11 @@
 
 #define __________________NAV_L1___________________    ALT_F4,  TAB_LT,  TAB_RT,  CTL_F4,  KC_VOLU
 #define __________________NAV_L2___________________    DSK_LT,  WIN_LT,  WIN_RT,  DSK_RT,  KC_VOLD
-#define __________________NAV_L3___________________    KC_LCTL, KC_LGUI, KC_LALT, SFT_INS, XXXXXXX
+#define __________________NAV_L3___________________    KC_LCTL, KC_LGUI, KC_LALT, SFT_INS, KC_MPLY
 
 #define __________________NAV_R1___________________    KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_CALC
 #define __________________NAV_R2___________________    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_PAUS
-#define __________________NAV_R3___________________    KC_INS,  KC_DEL,  KC_MPLY, KC_MPRV, KC_MNXT
+#define __________________NAV_R3___________________    KC_INS,  KC_DEL,  KC_MPRV, KC_MNXT, KC_PSCR
 
 
 #define __________________FUN_L1___________________    _________________FUNC_LEFT_________________
