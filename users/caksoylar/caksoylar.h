@@ -6,6 +6,7 @@
 enum layers {
     DEF,
     GME,
+    CLM,
     SYM,
     NAV,
     FUN
@@ -48,12 +49,3 @@ enum custom_keycodes {
 #define TG_GAME TG(GME)
 #define GUI_TAB GUI_T(KC_TAB)
 #define ALT_DEL RALT_T(KC_DEL)
-
-typedef union {
-    uint32_t raw;
-    struct {
-        bool alternate_base :1;
-    };
-} userspace_config_t;
-
-userspace_config_t userspace_config;
