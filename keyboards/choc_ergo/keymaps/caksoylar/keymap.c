@@ -17,6 +17,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         __________________GAM_L3___________________,      __________________GAM_R3___________________,
                           __GAM2_THUMB_L__,                        __DEF2_THUMB_R__
     ),
+    [CLM] = LAYOUT_split_3x5_2_wrapper(
+        ______________COLEMAK_MOD_DH_L1____________,      ______________COLEMAK_MOD_DH_R1____________,
+        ______________COLEMAK_MOD_DH_L2____________,      ______________COLEMAK_MOD_DH_R2____________,
+        ______________COLEMAK_MOD_DH_L3____________,      ______________COLEMAK_MOD_DH_R3____________,
+                          __DEF2_THUMB_L__,                        __DEF2_THUMB_R__
+    ),
     [SYM] = LAYOUT_split_3x5_2_wrapper(
         __________________SYM_L1___________________,      __________________SYM_R1___________________,
         __________________SYM_L2___________________,      __________________SYM_R2___________________,
