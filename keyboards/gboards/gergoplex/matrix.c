@@ -183,15 +183,15 @@ bool matrix_is_modified(void)  // deprecated and evidently not called.
 inline bool         matrix_is_on(uint8_t row, uint8_t col) { return (matrix[row] & ((matrix_row_t)1 << col)); }
 inline matrix_row_t matrix_get_row(uint8_t row) { return matrix[row]; }
 
-void matrix_print(void) {
-    print("\nr/c 0123456789ABCDEF\n");
+void matrix_print(void) {}
+/*    print("\nr/c 0123456789ABCDEF\n");
     for (uint8_t row = 0; row < MATRIX_ROWS; row++) {
         phex(row);
         print(": ");
         pbin_reverse16(matrix_get_row(row));
         print("\n");
     }
-}
+}*/
 uint8_t matrix_key_count(void) {
     uint8_t count = 0;
     for (uint8_t i = 0; i < MATRIX_ROWS; i++) {
