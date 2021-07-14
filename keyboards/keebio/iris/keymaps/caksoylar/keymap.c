@@ -176,7 +176,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef ENCODER_ENABLE
 __attribute__ ((weak)) void update_dial(bool direction) {}
 
-void encoder_update_user(uint8_t index, bool clockwise) {
+bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
         switch (get_highest_layer(layer_state)) {
             case _EXTR:
@@ -199,5 +199,6 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                 break;
         }
     }
+    return true;
 }
 #endif  // ENCODER_ENABLE
