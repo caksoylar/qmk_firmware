@@ -4,7 +4,7 @@
 
 // User includes
 #include "qwerty.def"
-#include "secrets.def"
+// #include "secrets.def"
 
 // Word completion
 // #include "combos/eng-combos.def"
