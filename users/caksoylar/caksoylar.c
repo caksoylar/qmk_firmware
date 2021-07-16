@@ -72,16 +72,15 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case SFT_Z:
-        case GUI_X:
-        case ALT_C:
-        case CTL_SLS:
-        case GUI_DOT:
-        case ALT_COM:
-        case CTL_PEN:
-        case GUI_P3:
-        case ALT_P2:
-            return TAPPING_TERM + 50;
+        case HM_A:
+        case HM_S:
+        case HM_D:
+        case HM_F:
+        case HM_J:
+        case HM_K:
+        case HM_L:
+        case HM_QUOT:
+            return TAPPING_TERM + 100;
         default:
             return TAPPING_TERM;
     }
@@ -108,5 +107,21 @@ bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
             return true;
         default:
             return false;
+    }
+}
+
+bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case HM_A:
+        case HM_S:
+        case HM_D:
+        case HM_F:
+        case HM_J:
+        case HM_K:
+        case HM_L:
+        case HM_QUOT:
+            return false;
+        default:
+            return true;
     }
 }

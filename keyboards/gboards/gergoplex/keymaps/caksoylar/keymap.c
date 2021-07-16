@@ -1,7 +1,7 @@
 #include "gergoplex.h"
-#include "g/keymap_combo.h"
-
 #include "caksoylar.h"
+
+#include "g/keymap_combo.h"
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -13,8 +13,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [GME] = LAYOUT_split_3x5_3_wrapper(
         _________________QWERTY_L1_________________,      _________________QWERTY_R1_________________,
-        _________________QWERTY_L2_________________,      _________________QWERTY_R2_________________,
-        __________________GAM_L3___________________,      __________________GAM_R3___________________,
+        __________________GAM_L2___________________,      __________________GAM_R2___________________,
+        _________________QWERTY_L3_________________,      _________________QWERTY_R3_________________,
                  ______GAM3_THUMB_L_______,                        ______DEF3_THUMB_R_______
     ),
     [CLM] = LAYOUT_split_3x5_3_wrapper(

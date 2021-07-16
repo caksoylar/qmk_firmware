@@ -25,17 +25,6 @@ enum custom_keycodes {
 #define SYM_SPC LT(SYM, KC_SPC)
 #define SFT_ENT SFT_T(KC_ENT)
 
-// bottom row mod-taps
-#define SFT_Z   SFT_T(KC_Z)
-#define GUI_X   GUI_T(KC_X)
-#define ALT_C   RALT_T(KC_C)
-#define CTL_SLS CTL_T(KC_SLSH)
-#define GUI_DOT GUI_T(KC_DOT)
-#define ALT_COM LALT_T(KC_COMM)
-#define CTL_PEN CTL_T(KC_PENT)
-#define GUI_P3  GUI_T(KC_P3)
-#define ALT_P2  LALT_T(KC_P2)
-
 // navigation shortcuts
 #define ALT_F4  A(KC_F4)
 #define CTL_F4  C(KC_F4)
@@ -44,6 +33,16 @@ enum custom_keycodes {
 #define SFT_INS S(KC_INS)
 #define TAB_RT  C(KC_TAB)
 #define TAB_LT  C(S(KC_TAB))
+
+// home row mod-taps
+#define HM_A    CTL_T(KC_A)
+#define HM_S    GUI_T(KC_S)
+#define HM_D    LALT_T(KC_D)
+#define HM_F    SFT_T(KC_F)
+#define HM_J    RSFT_T(KC_J)
+#define HM_K    RALT_T(KC_K)
+#define HM_L    RGUI_T(KC_L)
+#define HM_QUOT RCTL_T(KC_QUOT)
 
 // extra keys
 #define TG_GAME TG(GME)
